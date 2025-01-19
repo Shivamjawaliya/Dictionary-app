@@ -43,9 +43,11 @@ btn.addEventListener("click" , async ()=>{
     console.log(value);
     URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${value}`;
     let response = await fetch(URL);
+    if(response.status == "404"){
+        word.innerText = "Word : Not in dictionary";
+    }else{
     let data = await response.json();
-    console.log(data);
     setvalues(data , value);
-
+    }
 });
 
